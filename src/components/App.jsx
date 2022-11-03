@@ -18,17 +18,28 @@ export class App extends Component {
     filter: '',
   };
 
-  addContact = (name, number) => {
+  addContact = ({ name, number }) => {
     const { contacts } = this.state;
-    const newArray = contacts.map(contact => contact.name);
-    if (newArray.includes(name)) {
-      return alert('Taki użytkownik już istanieje');
+    if (contacts.some(c => c.name === name)) {
+      return alert('Taki użytkownik już istnieje');
     }
-    const contact = { id: nanoid(), name, number };
+    const newContact = { id: nanoid(), name, number };
     this.setState(({ contacts }) => ({
-      contacts: [contact, ...contacts],
+      contacts: [newContact, ...contacts],
     }));
   };
+
+  // addContact = (name, number) => {
+  //   const { contacts } = this.state;
+  //   const newArray = contacts.map(contact => contact.name);
+  //   if (newArray.includes(name)) {
+  //     return alert('Taki użytkownik już istanieje');
+  //   }
+  //   const contact = { id: nanoid(), name, number };
+  //   this.setState(({ contacts }) => ({
+  //     contacts: [contact, ...contacts],
+  //   }));
+  // };
 
   getContacts = () => {
     const { contacts, filter } = this.state;
