@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import styles from './App.module.css'
+import styles from './App.module.css';
 
 import Phonebook from './Phonebook/Phonebook';
 import Contacts from './Contacts/Contacts';
@@ -18,28 +18,16 @@ export class App extends Component {
     filter: '',
   };
 
-  addContact = ({ name, number }) => {
+  addContact = (name, number) => {
     const { contacts } = this.state;
-    if (contacts.some(c => c.name === name)) {
-      return alert('Taki użytkownik już istnieje');
+    if (contacts.find(c => c.name === name)) {
+      return alert(`Użytkownik  ${name} już istnieje`);
     }
     const newContact = { id: nanoid(), name, number };
     this.setState(({ contacts }) => ({
       contacts: [newContact, ...contacts],
     }));
   };
-
-  // addContact = (name, number) => {
-  //   const { contacts } = this.state;
-  //   const newArray = contacts.map(contact => contact.name);
-  //   if (newArray.includes(name)) {
-  //     return alert('Taki użytkownik już istanieje');
-  //   }
-  //   const contact = { id: nanoid(), name, number };
-  //   this.setState(({ contacts }) => ({
-  //     contacts: [contact, ...contacts],
-  //   }));
-  // };
 
   getContacts = () => {
     const { contacts, filter } = this.state;
