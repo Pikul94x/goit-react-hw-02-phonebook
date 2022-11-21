@@ -18,7 +18,7 @@ export class App extends Component {
     filter: '',
   };
 
-  addContact = (name, number) => {
+  addContact = ({name, number}) => {
     const { contacts } = this.state;
     if (contacts.find(c => c.name === name)) {
       return alert(`Użytkownik  ${name} już istnieje`);
