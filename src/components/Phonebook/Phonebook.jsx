@@ -1,14 +1,14 @@
 import { Component } from 'react';
-import styles from "./Phonebook.module.css"
+import styles from './Phonebook.module.css';
 
 const INITIAL_STATE = {
-    name: '',
-    number: ''
-}
+  name: '',
+  number: '',
+};
 
 class Phonebook extends Component {
   state = {
-    ...INITIAL_STATE
+    ...INITIAL_STATE,
   };
 
   handleChange = e => {
@@ -18,8 +18,12 @@ class Phonebook extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit({...this.state});
-    this.setState({ name: '', number: '' });
+    this.props.onSubmit({ ...this.state });
+    this.reset();
+  };
+
+  reset = () => {
+    this.setState({ ...INITIAL_STATE });
   };
 
   render() {
@@ -27,7 +31,9 @@ class Phonebook extends Component {
       <>
         <div className={styles.container}>
           <form className={styles.form} onSubmit={this.handleSubmit}>
-            <label className={styles.label} htmlFor="">Name</label>
+            <label className={styles.label} htmlFor="">
+              Name
+            </label>
             <input
               onChange={this.handleChange}
               value={this.state.name}
@@ -37,7 +43,9 @@ class Phonebook extends Component {
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               required
             />
-            <label className={styles.label} htmlFor="">Number</label>
+            <label className={styles.label} htmlFor="">
+              Number
+            </label>
             <input
               onChange={this.handleChange}
               value={this.state.number}
@@ -57,6 +65,3 @@ class Phonebook extends Component {
 }
 
 export default Phonebook;
-
-
-
