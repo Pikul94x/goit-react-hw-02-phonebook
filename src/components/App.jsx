@@ -24,9 +24,7 @@ export class App extends Component {
       return alert(`Użytkownik  ${name} już istnieje`);
     }
     const newContact = { id: nanoid(), name, number };
-    this.setState(({ contacts }) => ({
-      contacts: [newContact, ...contacts],
-    }));
+    this.setState({ contacts: [newContact, ...this.state.contacts]})
   };
 
   getContacts = () => {
